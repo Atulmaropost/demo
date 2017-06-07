@@ -1,0 +1,15 @@
+<div class="row">
+	<% @galleries.each  do |gallery| %>
+		<div class="col-xs-6 col-sm-4 col-md-3">            
+		    <div class="thumbnail">
+		        <div class="caption">
+		             <h4><%= gallery.name  if gallery.name.present?  %></h4>	
+		            <p>short thumbnail description</p>
+		            <p><a href="" class="label label-danger">Edit</a> 
+		            <%= link_to "Delete", gallery_path(gallery), method: 'delete', :class=> "label label-default",  confirm: "Are you sure?", remote: true, id: "delete_gallery" %></p>
+		        </div>
+		        <img src="<%= gallery.gallery_image_url(:thumb)%>" alt="...">
+		    </div>
+		</div>
+	<% end %>  
+</div>
