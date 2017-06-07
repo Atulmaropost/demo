@@ -11,14 +11,7 @@ class GalleryController < ApplicationController
 
 	def create			
 		@gallery =  Gallery.create(gallery_params)
-		respond_to do |format|
-	  	if @gallery.save
-	    	format.html { redirect_to about_us_path, notice: 'Gallery was successfully Send.' }
-	  	else
-	    	
-	    	format.html { redirect_to about_us_path, notice: 'Gallery was not created please try with different name.' }
-	  	end
-		end
+		@gallery.save
 	end
 
 	def edit
