@@ -43,6 +43,7 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem "figaro"
 gem 'jquery-validation-rails'
 gem 'kaminari'
+gem 'email_validator' , require: 'email_validator/strict'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

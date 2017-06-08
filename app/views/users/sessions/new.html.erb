@@ -5,6 +5,10 @@
         <h3><h2>Log in</h2></h3>
         <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => 'loginForm'} ) do |f| %>
           <div class="input-group">
+          <% flash.each do |key, value| %>          
+          <div><%= value %></div>         
+          <% end %>
+            <%= devise_error_messages! %>
             <%= f.label :email %><br />
             <%= f.email_field :email, autofocus: true, :class => "form-control", :placeholder => "Enter Your Email" %>
             <%= f.label :password %><br />

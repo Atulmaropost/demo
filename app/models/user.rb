@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+    validates :email, email: {strict_mode: true}
     has_many :galleries
 
     after_create :congrats_email

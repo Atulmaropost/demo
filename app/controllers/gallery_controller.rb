@@ -10,14 +10,9 @@ class GalleryController < ApplicationController
 	end
 
 
-	def new
-		@gallery = Gallery.new(gallery_params)
-	end
-
 	def create			
 		@gallery =  Gallery.create(gallery_params)
 	  	@gallery.save
-
 	end
 
 	def edit
@@ -34,7 +29,7 @@ class GalleryController < ApplicationController
 	def destroy
 	   @gallery.destroy
 	    respond_to do |format|
-          format.js { render :layout=>false }
+        format.js { render :layout=>false }
       end
   end 
 
@@ -47,7 +42,7 @@ class GalleryController < ApplicationController
 	def get_galleries
 		@user = current_user
 		@galleries = current_user.galleries if current_user.galleries.present?
-		@galleries= @galleries.order("DESC").page(params[:page]).per(4) if @galleries.present?
+		@galleries= @galleries.order(:name).page(params[:page]).per(4) if @galleries.present?
 
 	end
 
