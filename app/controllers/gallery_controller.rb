@@ -16,7 +16,8 @@ class GalleryController < ApplicationController
 
 	def create			
 		@gallery =  Gallery.create(gallery_params)
-	  @gallery.save
+	  	@gallery.save
+
 	end
 
 	def edit
