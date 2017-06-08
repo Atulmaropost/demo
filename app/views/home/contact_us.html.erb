@@ -27,6 +27,7 @@
                         	</span>
                         	<%= f.text_field :email, class: "form-control", placeholder: "Enter Email" %>
                         </div>
+                        <div id="result"></div>
                 	</div>
                 	<div class="form-group">
                     	<label for="email">
@@ -45,7 +46,7 @@
             	</div>
 
             	<div class="col-md-12">
-            		<%= f.submit "Send Message",  class: "fbtn btn-primary pull-right" %>
+            		<%= f.submit "Send Message",  class: "fbtn btn-primary pull-right", id: "validate" %>
             	</div>
 	        	</div>
 	      <% end %>
@@ -58,6 +59,7 @@
       </form>
     </div>
  </div>
+
 
 
 
