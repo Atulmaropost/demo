@@ -1,9 +1,6 @@
 class HomeController < ApplicationController
 	
 	before_action :authenticate_user!	
-	def index
-		
-	end
 
 	def about_us
 		
@@ -16,19 +13,8 @@ class HomeController < ApplicationController
 	def message
 		@contact = Contact.new(contact_params)
 	  @contact.save
-  	respond_to do |format|
-    	if @contact.save
-
-      	# Sends email to user when user is created.
-      	ContactMailer.contact_us_email(@contact).deliver
-
-      	format.html { redirect_to root_path, notice: 'Contact was successfully Send.' }
-      	format.json { render :show, status: :created, location: @contact}
-    	else
-      	format.html { render :contact_us }
-      	format.json { render json: @contact.errors, status: :unprocessable_entity }
-    	end
-		end
+    ContactMailer.contact_us_email(@contact).deliver
+    flash[:success] = "Your message has been send"
  	end	 
 		
 	private

@@ -1,0 +1,39 @@
+<div class="well well-sm">
+	<%= form_for :contact, url: message_path,remote: true, :html => { :id => "contact_us"}  do |f| %>
+    	<div class="row">
+      	<div class="col-md-6">
+          	<div class="form-group">
+              	<%= f.label :name %><br>
+              	<%= f.text_field :name, class: "form-control" , placeholder: "Enter Name" %>
+          	</div>
+          	<div class="form-group">
+              	<label for="email">
+                  	Email Address</label>
+              	<div class="input-group">
+                  	<span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
+                  	</span>
+                  	<%= f.text_field :email, class: "form-control", placeholder: "Enter Email" %>
+                  </div>
+          	</div>
+          	<div class="form-group">
+              	<label for="email">
+                  	Mobile Number</label>
+              	<div class="input-group">
+                  	<%= f.text_field :mobile_number, class: "form-control", placeholder: "Enter Mobile Number" %>
+                  </div>
+          	</div>
+          	<div class="form-group">
+              	<label for="email">
+                  	Message</label>
+              	<div class="input-group">
+                  	<%= f.text_area :description, class: "form-control", placeholder: "Leave your message here?", :style=> "resize:none"a%>
+                  </div>
+          	</div>
+      	</div>
+
+      	<div class="col-md-12">
+      		<%= f.submit "Send Message",  class: "fbtn btn-primary pull-right" %>
+      	</div>
+    	</div>
+  <% end %>
+</div>

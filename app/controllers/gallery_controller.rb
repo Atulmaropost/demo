@@ -2,23 +2,21 @@ class GalleryController < ApplicationController
 
 	before_action :authenticate_user!	
 	
-	before_action :get_galleries, only: [:destroy, :index]
+	before_action :get_galleries, only: [:destroy, :index, :create, :update]
 	before_action :get_gallery, only: [:update, :edit, :destroy]
 
 	def index
 
 	end
 
+
+	def new
+		@gallery = Gallery.new(gallery_params)
+	end
+
 	def create			
 		@gallery =  Gallery.create(gallery_params)
-		respond_to do |format|
-	  	if @gallery.save
-	    	format.html { redirect_to about_us_path, notice: 'Gallery was successfully Send.' }
-	  	else
-	    	
-	    	format.html { redirect_to about_us_path, notice: 'Gallery was not created please try with different name.' }
-	  	end
-		end
+	  @gallery.save
 	end
 
 	def edit
@@ -27,11 +25,7 @@ class GalleryController < ApplicationController
 
 
 	def update
-	  if @gallery.update(gallery_params)
-	    redirect_to about_us_path
-	  else
-	      redirect_to about_us_path
-	  end
+	   @gallery.update(gallery_params)
 	end
 		
 
@@ -51,7 +45,9 @@ class GalleryController < ApplicationController
 
 	def get_galleries
 		@user = current_user
-		@galleries = current_user.galleries
+		@galleries = current_user.galleries if current_user.galleries.present?
+		@galleries= @galleries.order("DESC").page(params[:page]).per(4) if @galleries.present?
+
 	end
 
 	def gallery_params

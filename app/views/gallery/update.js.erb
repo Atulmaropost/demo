@@ -1,0 +1,9 @@
+<% if @gallery.errors.any? %>
+<% debugger %>
+	alert("<%= @gallery.errors.full_messages %>."); 
+<% else %>
+	$("#gallery").html("<%= escape_javascript(render(:partial => 'delete')) %>");
+	$('#myModal2').modal('show');
+	window.location.href='<%= url_for(:action => :index) %>'
+	
+<% end%>	

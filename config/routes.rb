@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html 
    resources :gallery	
 	 		
-  root 'home#index'
+  root 'home#about_us'
   get '/contact_us' => 'home#contact_us'
   get '/about_us' => 'home#about_us'
   post '/message' => 'home#message'
