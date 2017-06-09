@@ -5,7 +5,7 @@ class GalleryController < ApplicationController
 	before_action :get_galleries, only: [:destroy, :index, :create, :update]
 	before_action :get_gallery, only: [:update, :edit, :destroy]
 
-	def index
+	def index	
 
 	end
 

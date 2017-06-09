@@ -6,9 +6,10 @@ class ContactMailer < ApplicationMailer
     	mail(to: @contact.email, subject: 'Thanks for contacting us')
   	end
 
-  	def welcome_email(email)
+  	def welcome_email(email, password)
  		@email = email
- 		mail(to: @email, subject: 'you logged in successfully')
+ 		@password = password
+ 		mail(to: @email, subject: 'You logged in successfully')
   	end
 
 end
