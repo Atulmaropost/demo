@@ -8,9 +8,19 @@ class User < ApplicationRecord
     has_many :galleries
 
     after_create :congrats_email
+    # before_create :generate_password
 
 	def congrats_email	
 		@email =self.email
-	  ContactMailer.welcome_email(@email).deliver_now
+    @password =  self.password
+	  ContactMailer.welcome_email(@email, @password).deliver_now
 	end
+
+  def self.generate_password
+    random_string = ('a'..'z').to_a.shuffle.first(2).join
+    random_integer = ('0'..'9').to_a.shuffle.first(7).join
+    random_letter =  ('A'..'Z').to_a.shuffle.first(1).join
+    password =  "#{random_string}#{random_integer}#{random_letter}"    
+  end
+
 end

@@ -1,4 +1,5 @@
 class GalleryController < ApplicationController
+	require 'roo'
 
 	before_action :authenticate_user!	
 	
@@ -12,7 +13,7 @@ class GalleryController < ApplicationController
 
 	def create			
 		@gallery =  Gallery.create(gallery_params)
-	  	@gallery.save
+	  @gallery.save
 	end
 
 	def edit
@@ -27,13 +28,34 @@ class GalleryController < ApplicationController
 
 
 	def destroy
-	   @gallery.destroy
-	    respond_to do |format|
-        format.js { render :layout=>false }
-      end
+		@gallery.destroy
+	  respond_to do |format|
+      format.js { render :layout=>false }
+    end
   end 
 
+
+  def import_image
+		response = Gallery.import(params[:file], current_user) 
+		message_string = "#{response[:success]} files imported successfully.<br/>"
+    message_string += "#{response[:failed]} files failed to import."
+    debugger
+    if response[:failed] > 0
+      message_string += "<br /> Failed images detail:<br />"
+      response[:failed_rows].each do |row|
+        message_string += "Row Id: #{row.keys[0]} <br />"
+        row[row.keys[0]].each do |message|
+          message_string += message + "<br />"
+        end
+      end
+    end
+    debugger
+    flash[:notice] = message_string
+    redirect_to gallery_index_path
+	end
+
 	private 
+	
 	def get_gallery
 		@gallery = Gallery.find(params[:id])
 		

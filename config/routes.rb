@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   get '/contact_us' => 'home#contact_us'
   get '/about_us' => 'home#about_us'
   post '/message' => 'home#message'
+  post '/import_image' => 'gallery#import_image'
 end

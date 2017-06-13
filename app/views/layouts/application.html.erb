@@ -30,13 +30,17 @@
 			        <li><%= link_to "Sign up", new_registration_path(resource_name) , class: "glyphicon glyphicon-user" %> </li>
 			        <li><%= link_to "Login" , new_session_path(resource_name), class: "glyphicon glyphicon-log-in active" %></li>
 			    <% else %>  
-			    	<li><<%= link_to "Signout", destroy_user_session_path, method: "delete", class: "glyphicon glyphicon-user" %></li>  
+			    	<li class= "active"><%= link_to "Signout", destroy_user_session_path, method: "delete" %></li>
+			    	<li class="active" ><%= link_to "Change password", edit_user_registration_path %></li>
 			    <% end %>	
 		      </ul>
 		    </div>
 		  </div>
 		</nav>
-	<% end %>	
+	<% end %>
+	 <% flash.each do |key, value| %>          
+        <div><%= value.html_safe %></div>         
+    <% end %>	
     <%= yield %>
 
     <div class="footer-bottom">
