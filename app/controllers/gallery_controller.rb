@@ -48,6 +48,7 @@ class GalleryController < ApplicationController
 
 	def update
 	   @gallery.update(gallery_params)
+
 	end
 		
 
@@ -63,7 +64,7 @@ class GalleryController < ApplicationController
 	 if params[:id].match(/\A\d+\z/i).blank? # means it does have some non numeric character
     message = "Image id can be numeric only"
     respond_to do |format|
-      format.html { redirect_to gallery_path, notice: message }
+      format.html { redirect_to gallery_index_path, notice: message }
       format.json { render json: { status: "Failure", message: message, code: 500 } }
     end
   else
@@ -81,7 +82,7 @@ class GalleryController < ApplicationController
           } 
         }
       else
-        format.html { redirect_to gallery_path, notice: "No image found" }
+        format.html { redirect_to gallery_index_path, notice: "No image found" }
         format.json { render json: { status: "Failure", message: "No image found", code: 500 } }
       end
     end

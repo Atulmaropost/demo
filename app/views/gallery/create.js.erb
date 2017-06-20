@@ -1,8 +1,7 @@
 <% if @gallery.errors.any? %>
-	alert("Name has already Taken. Please try another name."); 
+	alert("<%= j @gallery.errors.full_messages.to_sentence %>")
 <% else %>
-	window.location.href='<%= url_for(:action => :index) %>'
-	
+	window.location.href='<%= url_for(:action => :index) %>'	
 <% end%>	
 
 

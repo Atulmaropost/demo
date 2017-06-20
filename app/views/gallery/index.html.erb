@@ -33,7 +33,7 @@
 	      </div>
 				<%= form_tag import_image_path, multipart: true do %>
 				  <div class="modal-body">
-				  	<%= file_field_tag :file %>
+				  	<%= file_field_tag :file, accept: 'text/csv' %>
 				  </div>	
 		      <div class="modal-footer">
 		      	<%= submit_tag "Submit", :class => "btn btn-info btn-lg", :input_html => {"data-dismiss" => "modal"}%>
