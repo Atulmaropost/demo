@@ -12,9 +12,15 @@ class HomeController < ApplicationController
 
 	def message
 		@contact = Contact.new(contact_params)
-	  @contact.save
-    ContactMailer.contact_us_email(@contact).deliver
-    flash[:success] = "Your message has been send"
+	  respond_to do |format|
+	  	if @contact.save
+    		ContactMailer.contact_us_email(@contact).deliver
+    		flash[:success] = "Your message has been send"
+        format.json { render json: { status: "Success", message: "Successful", code: 200 } }	
+    	else
+    		 format.json { render json: { status: "Failure", message: @query.errors.full_messages, code: 500 } }
+    	end 
+    end	
  	end	 
 		
 	private
