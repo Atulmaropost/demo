@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  require 'sidekiq/web'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   #devise_for :users 
@@ -12,4 +13,10 @@ Rails.application.routes.draw do
   post '/message' => 'home#message'
   post '/import_image' => 'gallery#import_image'
   get '/get_image/:id', to: 'gallery#get_image', as: 'get_image'
+  get '/gallery_count', to: 'gallery#gallery_count'
+
+
+  
+  mount Sidekiq::Web => '/sidekiq'
+
 end

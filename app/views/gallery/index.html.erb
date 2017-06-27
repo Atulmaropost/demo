@@ -1,6 +1,8 @@
 <div class="container" id="edit_gallery">
 	<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal1">Upload Image</button>
 	<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal3">Import Image</button>
+	<div class="total-yellow"><h4> Image Count </h4></div>
+		
 	<div id="myModal1" class="modal fade" role="dialog">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
@@ -24,7 +26,7 @@
 
 	  </div>
 	</div>
-		<div id="myModal3" class="modal fade" role="dialog">
+	<div id="myModal3" class="modal fade" role="dialog">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
@@ -40,39 +42,68 @@
 		      </div>
 	    	<% end %> 
 	    </div>
-
 	  </div>
 	</div>
+
+	<% if @galleries.present? %>
+		<div class="container" id="gallery">  
+			 <div class="row" id="cover"></div>
+			 <div class="err"></div>
+				<% @galleries.each  do |gallery| %>
+					<% cache(gallery, expires_in: 5.minutes) do %>
+				    <div class="col-xs-6 col-sm-4 col-md-3">            
+				        <div class="thumbnail">
+				            <div class="caption">
+				                <h4><%= gallery.name  if gallery.name.present?  %></h4>
+
+				                <p><%= link_to 'Edit', edit_gallery_path(gallery), :class=> "label label-default", data: {toggle: "modal", target: "#myModal2"}, remote: true %>
+				                <%= link_to "Delete", gallery_path(gallery), method: 'delete', :class=> "label label-default",  confirm: "Are you sure?", remote: true, id: "delete_gallery" %></p>
+				            </div>
+				            <img src="<%= gallery.gallery_image_url(:thumb)%>" alt="...">
+				        </div>
+				    </div>
+				  <% end %>
+				<% end %>    
+			 </div> 
+			 <%= link_to_prev_page @galleries, 'Previous Page', :class=> "label label-default" %>
+			 <%= link_to_next_page @galleries, 'Next Page', :class=> "label label-default" %>
+		</div>
+	<% end %>
+
 </div>
 
-<% if @galleries.present? %>
-	<div class="container" id="gallery">  
-		 <div class="row">
-		 <div class="err"></div>
-			<% @galleries.each  do |gallery| %>
-		    <div class="col-xs-6 col-sm-4 col-md-3">            
-		        <div class="thumbnail">
-		            <div class="caption">
-		                <h4><%= gallery.name  if gallery.name.present?  %></h4>
 
-		                <p><%= link_to 'Edit', edit_gallery_path(gallery), :class=> "label label-default", data: {toggle: "modal", target: "#myModal2"}, remote: true %>
-		                <%= link_to "Delete", gallery_path(gallery), method: 'delete', :class=> "label label-default",  confirm: "Are you sure?", remote: true, id: "delete_gallery" %></p>
-		            </div>
-		            <img src="<%= gallery.gallery_image_url(:thumb)%>" alt="...">
-		        </div>
-		    </div>
-		  <% end %>  
-		 </div> 
-		 <%= link_to_next_page @galleries, 'Next Page', :class=> "label label-default" %>
-	</div>
-<% end %>
 
 
 
 
 <style type="text/css">
-	
+
+.total-yellow {
+	display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    background-image: none;
+    border: 5px solid transparent;
+    white-space: nowrap;
+    color: black;
+    background-color: yellow;
+    text-decoration: none;
+}
+
 	.footer-bottom {
     margin-top: 60%;
 }
 </style>
+
+<script type="text/javascript">
+	$(document).on('turbolinks:load', function() {
+		$("#cover").show();
+		$.ajax({
+	    type:'GET',
+	    url:'/gallery_count',
+	  });	
+	});
+</script>

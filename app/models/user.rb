@@ -9,14 +9,9 @@ class User < ApplicationRecord
     validates :email, email: {strict_mode: true}
     has_many :galleries
 
-    after_create :congrats_email
     # before_create :generate_password
 
-	def congrats_email	
-		@email =self.email
-    @password =  self.password
-	  ContactMailer.welcome_email(@email, @password).deliver_now
-	end
+
 
   def self.generate_password
     random_string = ('a'..'z').to_a.shuffle.first(2).join

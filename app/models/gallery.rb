@@ -3,7 +3,7 @@ class Gallery < ApplicationRecord
 	mount_uploader :gallery_image, GalleryUploader
 	validates :name, :presence => {:message => 'cannot be blank, Task not saved'}
   validate :presence_of_url_field
-	belongs_to :user
+	belongs_to :user , :touch => true
   attr_accessor :flash_notice
 
 	require 'roo'

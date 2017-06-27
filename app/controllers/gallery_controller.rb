@@ -53,8 +53,8 @@ class GalleryController < ApplicationController
 		
 
 
-	def destroy
-		@gallery.destroy
+	def destroy	
+	  @gallery.destroy
 	  respond_to do |format|
       format.js { render :layout=>false }
     end
@@ -91,7 +91,13 @@ class GalleryController < ApplicationController
   end
 
 
-
+  def gallery_count
+  	sleep(2);
+  	@gallery_count =  current_user.galleries.size
+  	respond_to do |format|
+  		format.js
+  	end	
+  end
 
 
 
