@@ -18,6 +18,14 @@
 @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
 
 
+
+
+.form input[type=text], form input[type=password], form input[type=email], form input[type=number], form input[type=url], form input[type=tel], form input[type=date], form input[type=time], form textarea {
+    width: 300px;
+
+}
+
+
 /* Base CSS */
 .alignleft {
     float: left;

@@ -1,7 +1,12 @@
 <div class="container" id="edit_gallery">
 	<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal1">Upload Image</button>
 	<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal3">Import Image</button>
-	<div class="total-yellow"><h4> Image Count </h4></div>
+	<div class="total-yellow">
+		<b>Image Count</b>
+		 <img class="loading" src="/assets/loader_icon.gif" >
+		<b id="count"></b>
+
+	</div>
 		
 	<div id="myModal1" class="modal fade" role="dialog">
 	  <div class="modal-dialog">
@@ -47,7 +52,7 @@
 
 	<% if @galleries.present? %>
 		<div class="container" id="gallery">  
-			 <div class="row" id="cover"></div>
+			 <div class="row"></div>
 			 <div class="err"></div>
 				<% @galleries.each  do |gallery| %>
 					<% cache(gallery, expires_in: 5.minutes) do %>
@@ -96,11 +101,15 @@
 	.footer-bottom {
     margin-top: 60%;
 }
+
+ .loading{
+   	max-width: 32px;
+  	max-height: 200px;
+  }
 </style>
 
 <script type="text/javascript">
 	$(document).on('turbolinks:load', function() {
-		$("#cover").show();
 		$.ajax({
 	    type:'GET',
 	    url:'/gallery_count',

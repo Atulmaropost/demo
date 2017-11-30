@@ -10,6 +10,7 @@ class Gallery < ApplicationRecord
 
   
   def self.import(file,user)
+    debugger
     response_hash = {}
     spreadsheet = open_file(file)
     header = spreadsheet.row(1)

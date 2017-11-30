@@ -3,7 +3,6 @@
   <head>
     <title>Demo</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -23,7 +22,7 @@
 		      <ul class="nav navbar-nav">  
 			        <li class="active"><%= link_to "About_us", about_us_path %></li>
 			        <li class="active"><%= link_to "Contact_us", contact_us_path %></li>
-			        <li class="active"><%= link_to "Gallery", gallery_index_path %></li>		        
+			        <li class="active" id="gallery_count"><%= link_to "Gallery", gallery_index_path %></li>		        
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right">
 		      	<% unless user_signed_in? %>
@@ -42,17 +41,18 @@
         <div><%= value.html_safe %></div>         
     <% end %>	
     <%= yield %>
-
-    <div class="footer-bottom">
-			<div class="container">
-				<div class="row">
-					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-						<div class="copyright">
-							© 2017 Maropost Inc. All rights reserved. | <%= link_to "Contact Us", contact_us_path %>
+    <% if user_signed_in?%>
+	    <div class="footer-bottom">
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+							<div class="copyright">
+								© 2017 Maropost Inc. All rights reserved. | <%= link_to "Contact Us", contact_us_path %>
+							</div>
 						</div>
 					</div>
-				</div>
-			</div>		
-		</div>
+				</div>		
+			</div>
+		<% end %>	
   </body>
 </html>
