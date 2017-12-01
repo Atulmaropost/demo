@@ -9,7 +9,7 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.3'
 # Use sqlite3 as the database for Active Record
-gem 'pg', :group => :production
+gem 'pg'
 gem 'rails_12factor', group: :producti
 # Use Puma as the app server
 # gem 'puma', '~> 3.7'
@@ -55,7 +55,6 @@ gem 'sidekiq', '~> 5.0', '>= 5.0.3'
 gem 'dalli'
 
 group :development, :test do
-  gem 'mysql2', '~> 0.3.16'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
