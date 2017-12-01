@@ -16,7 +16,7 @@
 #   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
 development:
   host: localhost
-  adapter: mysql2
+  adapter: postgresql
   encoding: utf8
   reconnect: false
   database: sample_development
@@ -30,7 +30,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   host: localhost
-  adapter: mysql2
+  adapter: postgresql
   encoding: utf8
   reconnect: false
   database: sample_test
@@ -40,12 +40,7 @@ test:
   socket:  /var/run/mysqld/mysqld.sock
 
 production:
-  host: localhost
-  adapter: mysql2
-  encoding: utf8
-  reconnect: false
+  adapter: postgresql
   database: sample_production
   pool: 5
-  username: root
-  password: admin
-  socket:  /var/run/mysqld/mysqld.sockk
+  timeout: 5000
