@@ -52,7 +52,7 @@ gem 'email_validator' , require: 'email_validator/strict'
 gem 'simple_token_authentication', '~> 1.0'
 # gem 'redis-rails'
 # gem 'redis-store'
-gem 'sidekiq', '~> 5.0', '>= 5.0.3'
+# gem 'sidekiq', '~> 5.0', '>= 5.0.3'
 # gem 'dalli'
 
 group :development, :test do

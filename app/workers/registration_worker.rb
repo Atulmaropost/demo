@@ -1,5 +1,4 @@
 class RegistrationWorker
-  include Sidekiq::Worker
 
   def perform(email, password)
   	@email = email
