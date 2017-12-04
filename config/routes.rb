@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  require 'sidekiq/web'
+  # require 'sidekiq/web'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   #devise_for :users 
@@ -17,6 +17,6 @@ Rails.application.routes.draw do
 
 
   
-  mount Sidekiq::Web => '/sidekiq'
+  # mount Sidekiq::Web => '/sidekiq'
 
 end
