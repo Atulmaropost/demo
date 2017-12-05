@@ -15,7 +15,8 @@ class HomeController < ApplicationController
 		@contact = Contact.new(contact_params)
 	  respond_to do |format|
 	  	if @contact.save
-    		BackgroundWorker.perform(@contact.id)
+    		#BackgroundWorker.perform(@contact.id)
+    		ContactMailer.contact_us_email(@contact).deliver
     		format.html { redirect_to contact_us_path, notice: 'Message successfully send.' }
         format.json { render json: { status: "Success", message: "Successful", code: 200 } }	
     	else

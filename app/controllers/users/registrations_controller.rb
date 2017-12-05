@@ -15,7 +15,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     yield resource if block_given?
     
     if resource.persisted?
-      RegistrationWorker.perform(resource.email, @password)
+      #RegistrationWorker.perform(resource.email, @password)
+      ContactMailer.welcome_email(resource.email, @password).deliver
+
       if resource.active_for_authentication?
         set_flash_message! :notice, :signed_up
         sign_up(resource_name, resource)
