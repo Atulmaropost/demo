@@ -1,7 +1,7 @@
 class GalleryController < ApplicationController
 	require 'roo'
 
-	before_action :authenticate_user!	
+	#before_action :authenticate_user!	
 	
 	before_action :get_galleries, only: [:destroy, :index,:create, :update ,:import_image]
 	before_action :get_gallery, only: [:update, :edit, :destroy]
